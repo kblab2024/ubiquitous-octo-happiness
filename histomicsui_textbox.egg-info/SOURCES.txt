@@ -1,0 +1,11 @@
+README.rst
+setup.py
+histomicsui_textbox/__init__.py
+histomicsui_textbox.egg-info/PKG-INFO
+histomicsui_textbox.egg-info/SOURCES.txt
+histomicsui_textbox.egg-info/dependency_links.txt
+histomicsui_textbox.egg-info/entry_points.txt
+histomicsui_textbox.egg-info/not-zip-safe
+histomicsui_textbox.egg-info/requires.txt
+histomicsui_textbox.egg-info/top_level.txt
+tests/test_textbox_plugin.py
