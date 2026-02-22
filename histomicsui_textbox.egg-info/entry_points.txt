@@ -1,2 +1,0 @@
-[girder.plugin]
-histomicsui_textbox = histomicsui_textbox:GirderPlugin
