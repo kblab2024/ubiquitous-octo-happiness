@@ -5,6 +5,11 @@ with open('README.rst') as readme_file:
 
 setup(
     name='histomicsui-textbox',
+    version='0.2.0',
+    description=(
+        'HistomicsUI plugins to display textbox and arrow annotations '
+        'on Digital Slide Archive'
+    ),
     version='0.1.0',
     description='HistomicsUI plugin to display textbox annotations on Digital Slide Archive',
     long_description=readme,
@@ -26,6 +31,7 @@ setup(
     entry_points={
         'girder.plugin': [
             'histomicsui_textbox = histomicsui_textbox:GirderPlugin',
+            'histomicsui_arrow = histomicsui_arrow:GirderPlugin',
         ],
     },
     python_requires='>=3.8',

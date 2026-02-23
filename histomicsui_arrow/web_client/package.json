@@ -1,0 +1,22 @@
+{
+    "name": "@girder/histomicsui_arrow",
+    "version": "0.1.0",
+    "description": "HistomicsUI plugin to display arrow annotations on Digital Slide Archive",
+    "license": "Apache-2.0",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/kblab2024/ubiquitous-octo-happiness.git"
+    },
+    "main": "./main.js",
+    "girderPlugin": {
+        "name": "histomicsui_arrow",
+        "main": "./main.js",
+        "dependencies": [
+            "large_image_annotation"
+        ]
+    },
+    "peerDependencies": {
+        "@girder/core": "*",
+        "@girder/large_image_annotation": "*"
+    }
+}
