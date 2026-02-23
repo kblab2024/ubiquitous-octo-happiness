@@ -3,6 +3,7 @@ histomicsui-textbox
 
 A `Digital Slide Archive (DSA)`_ / `HistomicsUI`_ plugin that adds support for
 displaying **textbox** and **arrow** annotation elements in the slide viewer.
+displaying **textbox** annotation elements in the slide viewer.
 
 A *textbox* annotation element renders a labelled rectangle on top of a whole-
 slide image.  It shares the geometry of the existing ``rectangle`` element type
@@ -139,6 +140,11 @@ How it works
     and ``arrow`` element types.  This allows these elements to pass validation
     and be stored in the database without modification alongside other
     annotation element types.
+    The plugin registers a Girder plugin that extends the
+    ``girder_large_image_annotation`` JSON schema to recognise the ``textbox``
+    element type.  This allows textbox elements to pass validation and be stored
+    in the database without modification alongside other annotation element
+    types.
 
 **Frontend (JavaScript)**
     The plugin's web client overrides
@@ -150,6 +156,13 @@ How it works
 
     *Arrow elements* are converted to ``polyline`` elements with ``closed``
     set to ``false``, so HistomicsUI renders a line between the two points.
+    ``@girder/large_image_annotation``.  When an annotation contains one or
+    more ``textbox`` elements the override converts each element to a
+    ``rectangle`` element, setting the ``label.value`` from the ``text``
+    field before passing the element list to the standard GeoJSON conversion
+    pipeline.  HistomicsUI then renders the rectangle and its label without
+    any further changes.  Annotations that contain no textbox elements are
+    handled by the original method.
 
 
 Development

@@ -10,6 +10,8 @@ setup(
         'HistomicsUI plugins to display textbox and arrow annotations '
         'on Digital Slide Archive'
     ),
+    version='0.1.0',
+    description='HistomicsUI plugin to display textbox annotations on Digital Slide Archive',
     long_description=readme,
     long_description_content_type='text/x-rst',
     author='',
