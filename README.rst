@@ -2,8 +2,8 @@ histomicsui-textbox
 ===================
 
 A `Digital Slide Archive (DSA)`_ / `HistomicsUI`_ plugin that adds support for
-displaying **textbox** and **arrow** annotation elements in the slide viewer.
-displaying **textbox** annotation elements in the slide viewer.
+displaying **textbox** and **arrow** annotation elements in the slide viewer,
+including interactive draw buttons for real-time annotation.
 
 A *textbox* annotation element renders a labelled rectangle on top of a whole-
 slide image.  It shares the geometry of the existing ``rectangle`` element type
@@ -131,6 +131,24 @@ Fields:
     Standard annotation metadata fields.
 
 
+GUI annotation buttons
+----------------------
+
+Each plugin injects a draw button into the HistomicsUI **DrawWidget** toolbar
+so that users can create textbox and arrow annotations interactively on the
+slide viewer.
+
+**Textbox button**
+    Activates the *rectangle* drawing mode.  After the user draws a rectangle,
+    a prompt asks for the text content.  The resulting annotation element is
+    stored as a ``textbox`` with the drawn geometry and the entered text.
+
+**Arrow button**
+    Activates the *line* drawing mode.  After the user finishes drawing a
+    line, only the first and last points are kept and the annotation element
+    is stored as an ``arrow``.
+
+
 How it works
 ------------
 
@@ -140,11 +158,6 @@ How it works
     and ``arrow`` element types.  This allows these elements to pass validation
     and be stored in the database without modification alongside other
     annotation element types.
-    The plugin registers a Girder plugin that extends the
-    ``girder_large_image_annotation`` JSON schema to recognise the ``textbox``
-    element type.  This allows textbox elements to pass validation and be stored
-    in the database without modification alongside other annotation element
-    types.
 
 **Frontend (JavaScript)**
     The plugin's web client overrides
@@ -156,13 +169,11 @@ How it works
 
     *Arrow elements* are converted to ``polyline`` elements with ``closed``
     set to ``false``, so HistomicsUI renders a line between the two points.
-    ``@girder/large_image_annotation``.  When an annotation contains one or
-    more ``textbox`` elements the override converts each element to a
-    ``rectangle`` element, setting the ``label.value`` from the ``text``
-    field before passing the element list to the standard GeoJSON conversion
-    pipeline.  HistomicsUI then renders the rectangle and its label without
-    any further changes.  Annotations that contain no textbox elements are
-    handled by the original method.
+
+    Each plugin also uses the Girder ``wrap`` utility to extend the
+    ``DrawWidget`` from ``@girder/histomicsui``, adding a toolbar button and
+    intercepting the draw-complete callback to convert the drawn geometry into
+    the appropriate custom element type.
 
 
 Development
