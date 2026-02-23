@@ -12,11 +12,13 @@
         "name": "histomicsui_arrow",
         "main": "./main.js",
         "dependencies": [
-            "large_image_annotation"
+            "large_image_annotation",
+            "histomicsui"
         ]
     },
     "peerDependencies": {
         "@girder/core": "*",
-        "@girder/large_image_annotation": "*"
+        "@girder/large_image_annotation": "*",
+        "@girder/histomicsui": "*"
     }
 }
