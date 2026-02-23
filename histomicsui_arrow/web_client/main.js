@@ -117,6 +117,9 @@ wrap(DrawWidget, 'drawElement', function (drawElement, evt, type, forceRefresh) 
 wrap(DrawWidget, '_addDrawnElements', function (_addDrawnElements, element, annotations, opts) {
     if (this._arrowDrawMode && element) {
         element = element.map(function (el) {
+            if (el.type !== 'polyline') {
+                return el;
+            }
             var points = el.points || [];
             var arrowEl = Object.assign({}, el, {
                 type: 'arrow',

@@ -124,6 +124,9 @@ wrap(DrawWidget, '_addDrawnElements', function (_addDrawnElements, element, anno
             return;
         }
         element = element.map(function (el) {
+            if (el.type !== 'rectangle') {
+                return el;
+            }
             return Object.assign({}, el, {
                 type: 'textbox',
                 text: text || '',
